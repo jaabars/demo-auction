@@ -1,6 +1,8 @@
 package kg.megacom.demoauction.services.impl;
 
 import kg.megacom.demoauction.database.LotRepository;
+import kg.megacom.demoauction.exceptions.LotExistException;
+import kg.megacom.demoauction.exceptions.LotNotFound;
 import kg.megacom.demoauction.mappers.ClassMapper;
 import kg.megacom.demoauction.model.dto.LotDto;
 import kg.megacom.demoauction.model.entity.Lot;
@@ -15,8 +17,11 @@ public class LotServiceImpl implements LotService {
     private LotRepository lotRepository;
     @Override
     public LotDto saveLot(LotDto lotDto) {
+        if (lotExist(lotDto.getName())){
+            throw new LotExistException(lotDto.getName());
+        }
         Lot lot= ClassMapper.INSTANCE.lotDtoTLot(lotDto);
-        lotRepository.save(lot);
+        lot=lotRepository.save(lot);
         lotDto=ClassMapper.INSTANCE.lotToLotDto(lot);
         return lotDto;
     }
@@ -25,5 +30,22 @@ public class LotServiceImpl implements LotService {
     public List<LotDto> getLotList() {
         List<Lot> lotList=lotRepository.findAll();
         return ClassMapper.INSTANCE.lotListToLotDto(lotList);
+    }
+
+    @Override
+    public LotDto findLotById(Long id) {
+        Lot lot=lotRepository.findById(id).orElse(null);
+        if (lot==null){
+            throw new LotNotFound("Лот не найден");
+        }
+        LotDto lotDto=ClassMapper.INSTANCE.lotToLotDto(lot);
+        return lotDto;
+    }
+
+    @Override
+    public boolean lotExist(String name) {
+        int count=lotRepository.countByName(name);
+        return count==1;
+
     }
 }

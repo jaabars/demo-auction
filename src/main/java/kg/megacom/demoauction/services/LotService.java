@@ -8,4 +8,7 @@ public interface LotService {
 
     LotDto saveLot(LotDto lotDto);
     List<LotDto> getLotList();
+    LotDto findLotById(Long id);
+    boolean lotExist(String name);
+
 }

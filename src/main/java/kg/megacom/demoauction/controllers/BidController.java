@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import kg.megacom.demoauction.model.dto.BidDto;
 import kg.megacom.demoauction.services.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,7 +16,7 @@ import java.util.List;
 public class BidController {
     @Autowired
     private BidService bidService;
-    @PostMapping("/save")
+    @PostMapping(value = "/save",consumes = MediaType.APPLICATION_JSON_VALUE)
     public BidDto saveBid(@Valid @RequestBody BidDto bidDto){
         return bidService.saveBid(bidDto);
     }

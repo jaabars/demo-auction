@@ -16,7 +16,7 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public StatusDto saveStatus(StatusDto statusDto) {
         Status status= ClassMapper.INSTANCE.statusDtoToStatus(statusDto);
-        statusRepository.save(status);
+        status=statusRepository.save(status);
         statusDto=ClassMapper.INSTANCE.statusToStatusDto(status);
         return statusDto;
     }
