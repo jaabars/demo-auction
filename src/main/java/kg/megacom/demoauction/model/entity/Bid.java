@@ -16,7 +16,7 @@ public class Bid {
     private Date addDate;
     private double bidValue;
     private boolean active;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "lot_id")
     private Lot lot;
     @ManyToOne(cascade = CascadeType.ALL)

@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 public class BidDto {
     private Long id;
-    @JsonFormat(pattern = "dd.MM.yyyy")
+   // @JsonFormat(pattern = "dd.MM.yyyy")
     private Date addDate;
     private double bidValue;
     private boolean active;

@@ -11,7 +11,7 @@ public interface BidService {
     BidDto saveBid(BidDto bidDto);
     List<BidDto> getBidList();
     boolean EndDateChecker(Date date);
-    boolean lotStatus(Long id);
+
 
 
 }

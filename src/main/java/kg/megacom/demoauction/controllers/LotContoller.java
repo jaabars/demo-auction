@@ -16,12 +16,9 @@ public class LotContoller {
     private LotService lotService;
     @PostMapping("/save")
     public LotDto saveLot(@Valid @RequestBody LotDto lotDto){
-        lotDto.setId(1l);
-        System.out.println(lotDto);
-        return lotDto;
-        //return lotService.saveLot(lotDto);
+        return lotService.saveLot(lotDto);
     }
-    @GetMapping("get")
+    @GetMapping("/get")
     public List<LotDto> getLots(){
         return lotService.getLotList();
     }
@@ -37,4 +34,13 @@ public class LotContoller {
 
         return lotDto;
     }
+    @PutMapping("/update")
+    public LotDto updateLot(@RequestBody LotDto lotDto){
+        return lotService.saveLot(lotDto);
+    }
+    @GetMapping("/getactivelots")
+    public List<LotDto> getActiveLots(){
+        return lotService.getAciveLots();
+    }
+
 }

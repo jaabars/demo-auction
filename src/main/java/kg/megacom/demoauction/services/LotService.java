@@ -10,5 +10,6 @@ public interface LotService {
     List<LotDto> getLotList();
     LotDto findLotById(Long id);
     boolean lotExist(String name);
+    List<LotDto> getAciveLots();
 
 }

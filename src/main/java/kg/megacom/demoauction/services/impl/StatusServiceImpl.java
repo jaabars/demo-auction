@@ -6,6 +6,9 @@ import kg.megacom.demoauction.model.dto.StatusDto;
 import kg.megacom.demoauction.model.entity.Status;
 import kg.megacom.demoauction.services.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,4 +30,11 @@ public class StatusServiceImpl implements StatusService {
 
         return ClassMapper.INSTANCE.statusListToStatusDtoList(statusList);
     }
+
+  /*  @Override
+    public List<StatusDto> getStatusList(Integer pageNo, Integer pageSize, String sortBy) {
+        Pageable pageable= PageRequest.of(pageNo,pageSize, Sort.by(sortBy));
+
+        return ClassMapper.INSTANCE.statusListToStatusDtoList(statusRepository.findStatusesBy(pageable));
+    }*/
 }

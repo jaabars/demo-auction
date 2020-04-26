@@ -14,27 +14,22 @@ public class StatusController {
     @Autowired
     private StatusService statusService;
 
+
     @PostMapping("save")
     public StatusDto saveStatus(@RequestBody StatusDto statusDto){
         return statusService.saveStatus(statusDto);
     }
     @GetMapping("/get")
     public List<StatusDto> getStatus(){
-        List<StatusDto> statusDtoList=new ArrayList<>();
-        StatusDto statusDto=new StatusDto();
-        statusDto.setId(1l);
-        statusDto.setName("Активен");
-        StatusDto statusDto1=new StatusDto();
-        statusDto1.setId(2l);
-        statusDto1.setName("Продан");
-        StatusDto statusDto2=new StatusDto();
-        statusDto2.setId(3l);
-        statusDto2.setName("Закрыт");
-        statusDtoList.add(statusDto);
-        statusDtoList.add(statusDto1);
-        statusDtoList.add(statusDto2);
-        return statusDtoList;
 
-        //return statusService.getStatusList();
+        return statusService.getStatusList();
+
     }
+   /* @GetMapping("/list")
+    public List<StatusDto> getStatuses(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "2") Integer pageSize,
+            @RequestParam(defaultValue = "name") String sortBy){
+        return statusService.getStatusList(pageNo,pageSize,sortBy);
+    }*/
 }
